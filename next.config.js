@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    // domains: ["cdn.imagin.studio"],
+    domains: ["petraimages.com.s3.amazonaws.com"],
     unoptimized: true,
   },
   //   distDir: "build",
