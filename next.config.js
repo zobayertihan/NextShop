@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ["petraimages.com.s3.amazonaws.com"],
     unoptimized: true,
+    disableStaticImages: false,
   },
   swcMinfy: false,
   //   distDir: "build",
