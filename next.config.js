@@ -5,6 +5,7 @@ const nextConfig = {
     domains: ["petraimages.com.s3.amazonaws.com"],
     unoptimized: true,
   },
+  swcMinfy: false,
   //   distDir: "build",
   // output: "export",
 };
