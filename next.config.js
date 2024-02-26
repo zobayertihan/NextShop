@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  //   reactStrictMode: true,
   images: {
     domains: ["petraimages.com.s3.amazonaws.com"],
     unoptimized: true,
-    disableStaticImages: false,
+
+    // disableStaticImages: false,
   },
-  swcMinfy: false,
+  //   swcMinfy: false,
   //   distDir: "build",
   // output: "export",
 };

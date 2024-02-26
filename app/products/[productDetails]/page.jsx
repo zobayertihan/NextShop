@@ -2,10 +2,12 @@
 
 import CustomButton from "@/components/Button/CustomButton";
 import { getProductDetails } from "@/app/utils/apiCalls";
+import Image from "next/image";
 
 export default async function ProductDetails({ params }) {
   const { productDetails } = params;
   const product = await getProductDetails(productDetails);
+  console.log(product.product.shippableProduct);
   return (
     <div className=" tw-container flex flex-col items-center px-3 text-[#000] w-96 bg-gray-100 ">
       <div className="my-5 font-semibold text-lg">
@@ -16,11 +18,22 @@ export default async function ProductDetails({ params }) {
       </div>
       <div className="grid grid-cols-12 gap-10">
         <div className="my-3 col-span-6">
-          <img
+          {product?.product?.shippableProduct?.pictures?.list.map(
+            (image, i) => (
+              <Image
+                key={i}
+                src={image}
+                alt="Product"
+                width={500}
+                height={500}
+              />
+            )
+          )}
+          {/* <img
             className="h-auto w-full object-contain mix-blend-multiply py-2"
             src={product.product.shippableProduct.pictures.list}
             alt="Product"
-          />
+          /> */}
         </div>
         <div className="text-start my-auto col-span-6">
           <p className="font-bold text-3xl mb-5">
@@ -39,11 +52,11 @@ export default async function ProductDetails({ params }) {
             <span className="font-semibold text-lg"> Seller:</span>{" "}
             {product.product.seller.name}
           </p>
-          <p className="text-lg">
+          {/* <p className="text-lg">
             {" "}
             <span className="font-semibold text-lg">Status:</span>{" "}
             {product.product.status}
-          </p>
+          </p> */}
           <p className="text-lg">
             {" "}
             <span className="font-semibold text-lg">Price:</span>{" "}
@@ -72,21 +85,19 @@ export default async function ProductDetails({ params }) {
               ? "No"
               : "Yes"}
           </p>
-          <div>
-            <p className=" text-lg">
-              <span className="font-semibold">Specifications: </span>
-              <ul className="list-disc ms-5">
-                {product.product.shippableProduct.specifications
-                  .split("&bull;")
-                  .map((specification, index) => {
-                    const trimmedSpec = specification.trim();
-                    if (trimmedSpec) {
-                      return <li key={index}>{trimmedSpec}</li>;
-                    }
-                    return null; // If the specification is empty, return null to skip rendering
-                  })}
-              </ul>
-            </p>
+          <div className=" text-lg">
+            <span className="font-semibold">Specifications: </span>
+            <ul className="list-disc ms-5">
+              {product.product.shippableProduct.specifications
+                .split("&bull;")
+                .map((specification, index) => {
+                  const trimmedSpec = specification.trim();
+                  if (trimmedSpec) {
+                    return <li key={index}>{trimmedSpec}</li>;
+                  }
+                  return null; // If the specification is empty, return null to skip rendering
+                })}
+            </ul>
           </div>
           <p className="my-1 text-lg">
             {product.product.shippableProduct.notes2 === "" ? (

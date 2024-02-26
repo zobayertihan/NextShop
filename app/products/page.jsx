@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import CustomButton from "@/components/Button/CustomButton";
 import { getAllProducts } from "@/app/utils/apiCalls";
+import Image from "next/image";
 
 export default async function Products() {
   const products = await getAllProducts();
@@ -16,11 +17,17 @@ export default async function Products() {
               >
                 <div className=" flex flex-col items-center px-3">
                   <div className="bg-gray-100 w-full my-3">
-                    <img
+                    <Image
+                      src={product.pictures}
+                      alt="Product"
+                      width={500}
+                      height={500}
+                    />
+                    {/* <img
                       className="h-64 w-full object-contain mix-blend-multiply py-2"
                       src={product.pictures}
                       alt="Product"
-                    />
+                    /> */}
                   </div>
                   <p className="text-center font-semibold text-lg">
                     {product.title}
